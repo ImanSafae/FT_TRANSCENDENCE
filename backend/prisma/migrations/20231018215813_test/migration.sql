@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "UserData" ALTER COLUMN "roomJoined" SET DEFAULT ARRAY[]::TEXT[],
+ALTER COLUMN "roomOwned" SET DEFAULT ARRAY[]::TEXT[];

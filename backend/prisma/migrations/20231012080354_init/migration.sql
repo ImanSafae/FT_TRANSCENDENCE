@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "UserData" ALTER COLUMN "FA2Key" SET DEFAULT '';

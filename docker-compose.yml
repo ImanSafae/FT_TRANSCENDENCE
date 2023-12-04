@@ -1,0 +1,71 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+      # backend:
+      #   aliases:
+      #     - back
+    env_file: .env
+    depends_on:
+      - postgres
+  game:
+    build:
+      context: ./back_game
+      dockerfile: Dockerfile
+    container_name: game
+    ports:
+      - "4242:4242"
+    networks:
+      - backend
+      # backend:
+      #   aliases:
+      #     - game
+    env_file: .env
+    depends_on:
+      - backend
+    volumes:
+      - ./back_game:/app
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - backend
+      # backend:
+      #   aliases:
+      #     - front
+    depends_on:
+      - game
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes :
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db-volume:/var/lib/postgresql/data
+    networks:
+      backend:
+        aliases:
+          - db
+      
+volumes:
+  db-volume:
+networks:
+  backend:
+    driver: bridge

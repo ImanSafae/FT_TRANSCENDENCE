@@ -1,0 +1,1 @@
+import{H as i}from"./control.f5b05b5f.js";function t(e,n){return new i(e,n)}new TextEncoder;const o=[{nickname:"itaouil",fullName:"Iman Taouil",campus:"Nice"},{nickname:"jbettini",fullName:"Joseph Bettini",campus:"Nice"},{nickname:"mgoudin",fullName:"Matteo Goudin",campus:"Nice"}];export{t as e,o as u};

@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model UserData {
+  id          Int             @id @default(autoincrement())
+  id42        Int             @unique
+  username    String          @unique
+  pseudo      String          @unique @default("")
+  pp          String
+  fullName    String
+  FA2Key      String?
+  FA2         Boolean         @default(false)
+  status      String          @default("online")
+  roomOwned   String[]        @default([])
+  roomJoined  String[]        @default([])
+  msgSent     directMessage[] @relation("Sender")
+  msgReceived directMessage[] @relation("Receiver")
+  blockedUser String[]        @default([])
+  friendList  String[]        @default([])
+
+  friendRequest String[] @default([])
+}
+
+
+
+model room {
+  id          Int             @id @default(autoincrement())
+  name        String          @unique
+  private     Boolean         @default(false)
+  password    String?
+  messages    msgHistory[]
+
+  owner       String?
+  userList    String[]
+  adminList   String[]
+  banList     String[]
+}
+
+model msgHistory {
+  id          Int             @id @default(autoincrement())
+  msg         String
+  roomName    String
+  room        room            @relation(fields: [roomName], references: [name])
+
+  sender      String
+}
+
+model friendsRequest {
+  id          Int             @id @default(autoincrement())
+  senderId    Int
+}
+
+model directMessage {
+  id          Int             @id @default(autoincrement())
+  senderId    Int
+  receiverId  Int
+  content     String
+  createdAt   DateTime        @default(now())
+  sender      UserData        @relation("Sender", fields: [senderId], references: [id])
+  receiver    UserData        @relation("Receiver", fields: [receiverId], references: [id])
+}
+
+model score {
+  id          Int             @id @default(autoincrement())
+  user1Id     Int
+  user2Id     Int
+  winnerId    Int
+  u1Score     Int
+  u2Score     Int
+  createdAt   DateTime        @default(now())
+}

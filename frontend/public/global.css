@@ -1,0 +1,55 @@
+
+* {
+    margin: 0;
+    padding: 0
+}
+
+@font-face {
+    font-family: "Coolvetica";
+    src: url("fonts/Coolvetica/coolvetica rg.otf");
+}
+
+@font-face {
+    font-family: "Blacklisted";
+    src: url("fonts/Blacklisted.ttf");
+}
+
+@font-face {
+    font-family: "Doctor Glitch";
+    src: url("fonts/Doctor Glitch.otf");
+}
+
+@font-face {
+    font-family: "Bad Signal";
+    src: url("fonts/Bad Signal.otf");
+}
+
+@font-face {
+    font-family: "Interfearence";
+    src: url("fonts/Interfearence.ttf");
+}
+
+@font-face {
+    font-family: "The Modern Chaos";
+    src: url("fonts/The Modern Chaos.ttf");
+}
+
+@font-face {
+    font-family: "Wrong Delivery";
+    src: url("fonts/Wrong Delivery.ttf");
+}
+
+@font-face {
+    font-family: "Astral Delight";
+    src: url("fonts/astral_delight/Astral Delight.ttf");
+}
+
+@font-face {
+    font-family: "Glitch City";
+    src: url("fonts/Glitch City/CFGlitchCity-Regular.ttf");
+}
+
+@font-face {
+    font-family: "13Misa";
+    src: url("fonts/13misa/13_Misa.TTF");
+}
